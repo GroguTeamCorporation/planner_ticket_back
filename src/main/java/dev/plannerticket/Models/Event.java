@@ -20,8 +20,8 @@ public class Event {
     private String description;
     private String location;
     private int capacity;
-    private Date date_event;
-    private String time_event;
+    private Date date;
+    private String time;
     private String image;
     
     public Event() {
@@ -34,8 +34,8 @@ public class Event {
         this.description = description;
         this.location = location;
         this.capacity = capacity;
-        this.date_event = date_event;
-        this.time_event = time_event;
+        this.date = date;
+        this.time = time;
         this.image = image;
     }
 
@@ -69,17 +69,17 @@ public class Event {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
-    public Date getDate_event() {
-        return date_event;
+    public Date getDate() {
+        return date;
     }
-    public void setDate_event(Date date_event) {
-        this.date_event = date_event;
+    public void setDate(Date date) {
+        this.date = date;
     }
-    public String getTime_event() {
-        return time_event;
+    public String getTime() {
+        return time;
     }
-    public void setTime_event(String time_event) {
-        this.time_event = time_event;
+    public void setTime(String time) {
+        this.time = time;
     }
     public String getImage() {
         return image;
@@ -87,7 +87,5 @@ public class Event {
     public void setImage(String image) {
         this.image = image;
     }
-
-
     
 }
