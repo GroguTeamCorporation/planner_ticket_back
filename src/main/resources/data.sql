@@ -14,3 +14,11 @@ INSERT INTO events (title, date_event, time_event, capacity, description, image)
 INSERT INTO events (title, date_event, time_event, capacity, description, image)
 VALUES ('Nebulossa', '2024-05-30', '20:00:00', 2000, 'lololooooooooooo piiiii tamagochi a dormir', '/images/evento1.jpg');
 
+
+INSERT INTO users (id_user, password, username) VALUES (default, "$2a$12$uTgei7i9TrlSNPZS1DSlqu3BdWYXjZZsqVuP50iUKzPJSgByWAxRS
+", "admin");
+INSERT INTO users (id_user, password, username) VALUES (default, "paco", "paco");
+INSERT INTO roles (id_role, name) VALUES (default, "ADMIN");
+INSERT INTO roles (id_role, name) VALUES (default, "USER");
+INSERT INTO roles_users (role_id, user_id) VALUES (1,1);
+INSERT INTO roles_users (role_id, user_id) VALUES (2,2);
