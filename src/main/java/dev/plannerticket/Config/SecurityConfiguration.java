@@ -62,34 +62,8 @@ public class SecurityConfiguration {
         return http.build();
     } 
 
-   /*  @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .cors(Customizer.withDefaults())
-                .csrf(csrf -> csrf.disable())
-                .formLogin(form -> form.disable())
-                .logout(out -> out
-                        .logoutUrl(endpoint + "/logout")
-                        .deleteCookies("JSESSIONID"))
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, endpoint + "/events/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, endpoint + "/admin/events/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, endpoint + "/admin/events").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, endpoint + "/admin/events/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, endpoint + "/admin/events/**").hasRole("ADMIN")
-                        .anyRequest().authenticated())
-                .userDetailsService(jpaUserDetailsService)
-                .httpBasic(Customizer.withDefaults())
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
-
-        http.headers(header -> header.frameOptions(frame -> frame.sameOrigin()));
-
-        return http.build(); 
-    } */
-
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
+    CorsConfigurationSource configurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
