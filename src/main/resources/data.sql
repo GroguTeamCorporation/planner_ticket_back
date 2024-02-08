@@ -4,3 +4,4 @@ INSERT INTO events (title, date_event, time_event, capacity, description, locati
 INSERT INTO events (title, date_event, time_event, capacity, description, location, image) VALUES ('Nebulossa', '2024-05-30', '20:00:00', 2000, 'Concierto', 'Oviedo', '/images/concert4.jpg');
 INSERT INTO events (title, date_event, time_event, capacity, description, location, image) VALUES ('Mago de Oz', '2024-02-10', '18:00:00', 100, 'Concierto', 'Gijon', '/images/concert5.jpg');
 INSERT INTO events (title, date_event, time_event, capacity, description, location, image) VALUES ('Calamaro', '2024-05-30', '20:00:00', 2000, 'Concierto', 'Oviedo', '/images/concert6.jpg');
+INSERT INTO events (title, date_event, time_event, capacity, description, location, image) VALUES ('Joaquin Savina', '2024-05-30', '20:00:00', 2000, 'Concierto', 'Oviedo', '/images/concert6.jpg');
