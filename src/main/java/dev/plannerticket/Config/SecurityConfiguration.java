@@ -43,8 +43,8 @@ public class SecurityConfiguration {
                         .logoutUrl(endpoint + "/logout")
                         .deleteCookies("JSESSIONID"))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, endpoint + "/login").hasRole("ADMIN")
-                        .requestMatchers(endpoint + "/events/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, endpoint + "/login").permitAll() //.hasRole("ADMIN") 
+                        .requestMatchers(HttpMethod.GET, endpoint + "/events").permitAll()
                         .anyRequest().authenticated())
                 .userDetailsService(jpaUserDetailsService)
                 .httpBasic(Customizer.withDefaults())

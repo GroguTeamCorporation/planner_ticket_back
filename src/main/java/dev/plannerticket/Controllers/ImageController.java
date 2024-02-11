@@ -14,7 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
-//controlador manejará las solicitudes para recuperar las imágenes y devolverá las imágenes almacenadas en la carpeta src/main/resources/static/images/.
+//recuperar y devolver las imágenes almacenadas en src/main/resources/static/images/.
 
 @Controller
 public class ImageController {
@@ -28,7 +28,7 @@ public class ImageController {
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .contentType(MediaType.IMAGE_JPEG)  // o el tipo de contenido correcto para tus imágenes
+                .contentType(MediaType.IMAGE_JPEG) 
                 .body(resource);
     }
 }
