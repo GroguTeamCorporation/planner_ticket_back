@@ -22,7 +22,7 @@ import io.micrometer.common.lang.NonNull;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
-@RequestMapping("api/v1/events")
+@RequestMapping("${api-endpoint}/events")
 public class EventController {
 
     @Autowired
@@ -31,6 +31,7 @@ public class EventController {
     @GetMapping(path = "")
     public List<Event> getAllEvents() {
         return eventService.getAllEvents();
+        //return null;
     }
 
     @GetMapping(path = "/{id}")
@@ -40,9 +41,10 @@ public class EventController {
     }
 
     @PostMapping(path = "")
-    public ResponseEntity<Event> store(@RequestBody Event event, @RequestParam("file") MultipartFile file) throws Exception {
-        Event savedEvent = eventService.saveEvent(event, file);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedEvent);
+    public ResponseEntity<Event> store(@RequestBody Event newevent, @RequestParam("file") MultipartFile file) throws Exception {
+        eventService.saveEvent(newevent);
+        Event event = new Event();
+        return ResponseEntity.status(HttpStatus.CREATED).body(event);
     }
     
 /*     @PostMapping(path = "")

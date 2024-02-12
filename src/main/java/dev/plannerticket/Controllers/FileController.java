@@ -16,7 +16,7 @@ import dev.plannerticket.Services.FileStorageService;
 @RestController
 public class FileController {
 
-    @Autowired
+/*     @Autowired
     private FileStorageService fileStorageService;
 
     @PostMapping(path = "/images")
@@ -26,7 +26,7 @@ public class FileController {
 
         // Retorna la ruta relativa del archivo
         return ResponseEntity.ok().body(fileName);
-    }
+    } */
 
 
 /*     @PostMapping (path = "/images")
