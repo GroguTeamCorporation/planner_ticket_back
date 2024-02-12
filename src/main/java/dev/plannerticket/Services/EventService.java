@@ -16,14 +16,17 @@ public class EventService {
         return eventRepository.findAll();
     }
 
+    @SuppressWarnings("null")
     public Event getEventbyId(Long id) {
         return eventRepository.findById(id).orElse(null);
     }
 
+    @SuppressWarnings("null")
     public void saveEvent(Event event)  {
         eventRepository.save(event);
     }
 
+    @SuppressWarnings("null")
     public void deleteEvent(Long id) {
         eventRepository.deleteById(id);
     }
