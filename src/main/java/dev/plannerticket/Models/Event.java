@@ -27,8 +27,8 @@ public class Event {
     public Event() {
     }
     
-    public Event(Long id, String title, String description, String location, int capacity, Date date_event,
-            String time_event, String image) {
+    public Event(Long id, String title, String description, String location, int capacity, Date date,
+            String time, String image) {
         this.id = id;
         this.title = title;
         this.description = description;

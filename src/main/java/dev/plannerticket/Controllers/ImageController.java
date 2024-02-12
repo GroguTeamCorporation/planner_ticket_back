@@ -21,6 +21,7 @@ public class ImageController {
 
     private final String uploadDir = "src/main/resources/static/images/";
 
+    @SuppressWarnings("null")
     @GetMapping("/images/{filename:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) throws IOException {
         Path filePath = Paths.get(uploadDir).resolve(filename).normalize();
