@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.plannerticket.Models.Event;
 import dev.plannerticket.Services.EventService;
 
+
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("api/v1/events")
