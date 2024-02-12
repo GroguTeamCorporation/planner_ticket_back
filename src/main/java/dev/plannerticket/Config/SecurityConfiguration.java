@@ -1,7 +1,6 @@
 package dev.plannerticket.Config;
 
 import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -55,13 +54,16 @@ public class SecurityConfiguration {
         http.headers(header -> header.frameOptions(frame -> frame.sameOrigin()));
 
         return http.build();
-    }
+    } 
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
+
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:8080"));
+   
+
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -73,4 +75,5 @@ public class SecurityConfiguration {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
