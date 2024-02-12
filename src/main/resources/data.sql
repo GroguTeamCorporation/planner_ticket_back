@@ -15,10 +15,10 @@ INSERT INTO events (title, date_event, time_event, capacity, description, image)
 VALUES ('Nebulossa', '2024-05-30', '20:00:00', 2000, 'lololooooooooooo piiiii tamagochi a dormir', '/images/evento1.jpg');
 
 -- password admin HolaPepe24
-INSERT INTO users (id_user, password, username) VALUES (default, "$2a$12$W6Oks8h7boq8Y9l2Dgb5GecQaQRHjEKc/Y7FoPmNnMAALwc..XKhO", "admin");
-INSERT INTO users (id_user, password, username) VALUES (default, "$2a$12$W6Oks8h7boq8Y9l2Dgb5GecQaQRHjEKc/Y7FoPmNnMAALwc..XKhO", "pepe");
-INSERT INTO roles (id_role, name) VALUES (default, "ADMIN");
-INSERT INTO roles (id_role, name) VALUES (default, "USER");
+INSERT INTO users (id_user, password, username) VALUES (default, "$2a$12$Hb02zayAURjDGYhnQGf94.etYJu1QjDB2qNPxmhVjf1m4hhZOqJHy", "admin");
+INSERT INTO users (id_user, password, username) VALUES (default, "$2a$12$Hb02zayAURjDGYhnQGf94.etYJu1QjDB2qNPxmhVjf1m4hhZOqJHy", "pepe");
+INSERT INTO roles (id_role, name) VALUES (default, "ROLE_ADMIN");
+INSERT INTO roles (id_role, name) VALUES (default, "ROLE_USER");
 INSERT INTO roles_users (role_id, user_id) VALUES (1,1);
 INSERT INTO roles_users (role_id, user_id) VALUES (2,2);
 
