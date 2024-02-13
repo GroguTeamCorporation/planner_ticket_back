@@ -86,6 +86,5 @@ public class Event {
     }
     public void setImage(String image) {
         this.image = image;
-    }
-    
+    }    
 }
