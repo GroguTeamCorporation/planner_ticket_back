@@ -31,8 +31,5 @@ public class ImageController {
     @PostMapping(path = "/images")
     ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
         return ResponseEntity.status(201).body("imagen agregada con éxito");
-
-    }
-
-    
+    }    
 }

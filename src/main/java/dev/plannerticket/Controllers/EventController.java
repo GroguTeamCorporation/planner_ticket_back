@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import dev.plannerticket.Models.Event;
 import dev.plannerticket.Services.EventService;
+import dev.plannerticket.Services.FileStorageService;
 import io.micrometer.common.lang.NonNull;
 
 @CrossOrigin(origins = "http://localhost:5173")
@@ -26,12 +27,15 @@ import io.micrometer.common.lang.NonNull;
 public class EventController {
 
     @Autowired
-    private EventService eventService;    
+    private EventService eventService;   
+
+    @Autowired
+    private FileStorageService fileStorageService;
     
     @GetMapping(path = "")
     public List<Event> getAllEvents() {
-        return eventService.getAllEvents();
-        //return null;
+        //return eventService.getAllEvents();
+        return null;
     }
 
     @GetMapping(path = "/{id}")
@@ -40,12 +44,32 @@ public class EventController {
         return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(event);
     }
 
+    
+    /*     @PostMapping(path = "")
+        public ResponseEntity<Event> store(@RequestBody Event newevent, @RequestParam("file") MultipartFile file) throws Exception {
+            eventService.saveEvent(newevent);
+            Event event = new Event();
+            return ResponseEntity.status(HttpStatus.CREATED).body(event);
+        }
+     */
+
     @PostMapping(path = "")
     public ResponseEntity<Event> store(@RequestBody Event newevent, @RequestParam("file") MultipartFile file) throws Exception {
-        eventService.saveEvent(newevent);
-        Event event = new Event();
-        return ResponseEntity.status(HttpStatus.CREATED).body(event);
+        // Verifica si se ha subido un archivo
+        if (!file.isEmpty()) {
+            // Utiliza el servicio FileStorageService para guardar la imagen
+            String imageName = fileStorageService.storeFile(file);
+            
+            // Asocia la imagen con el evento
+            newevent.setImage(imageName);
+        }
+        
+    // Guarda el evento en la base de datos
+    Event savedEvent = eventService.saveEvent(newevent);
+    
+    return ResponseEntity.status(HttpStatus.CREATED).body(savedEvent);
     }
+
     
 /*     @PostMapping(path = "")
     public ResponseEntity<Event> store (@RequestBody Event event) throws Exception {

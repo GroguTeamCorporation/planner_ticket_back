@@ -24,11 +24,9 @@ public class FileStorageService {
         try (InputStream inputStream = file.getInputStream()) {
             Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            throw new RuntimeException("Could not store file " + fileName + ". Please try again!");
+            throw new RuntimeException("No se ha podido almacenar el archivo " + fileName + ". Volver a intentarlo.");
         }
 
-        // Devuelve el nombre del archivo guardado
         return fileName;
-    }
-    
+    }    
 }
