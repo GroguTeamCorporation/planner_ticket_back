@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FileStorageService {
     private final String uploadDir = "src/main/resources/static/images/";
+    //private final String uploadDir = "resources/static/images/";
 
     public String storeFile(MultipartFile file) {
         // Genera un nombre de archivo único para evitar conflictos
@@ -26,8 +27,6 @@ public class FileStorageService {
         } catch (IOException e) {
             throw new RuntimeException("Could not store file " + fileName + ". Please try again!");
         }
-
-        // Devuelve el nombre del archivo guardado
         return fileName;
     }
     

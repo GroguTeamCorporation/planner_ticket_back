@@ -45,6 +45,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, endpoint + "/login").permitAll() //.hasRole("ADMIN") 
                         .requestMatchers(HttpMethod.GET, endpoint + "/events").permitAll()
+                        .requestMatchers(HttpMethod.GET, endpoint + "/images").permitAll()
                         .requestMatchers(HttpMethod.POST, endpoint + "/images").permitAll()
                         .requestMatchers(HttpMethod.POST, endpoint + "/events").permitAll()
                         .anyRequest().authenticated())

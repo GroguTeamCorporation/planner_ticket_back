@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import dev.plannerticket.Models.Event;
 import dev.plannerticket.Services.EventService;
+import dev.plannerticket.Services.FileStorageService;
 import io.micrometer.common.lang.NonNull;
 
 @CrossOrigin(origins = "http://localhost:5173")
@@ -27,6 +28,8 @@ public class EventController {
 
     @Autowired
     private EventService eventService;    
+    @Autowired
+    private FileStorageService fileStorageService;
     
     @GetMapping(path = "")
     public List<Event> getAllEvents() {
@@ -40,12 +43,29 @@ public class EventController {
         return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(event);
     }
 
-    @PostMapping(path = "")
+/*     @PostMapping(path = "")
     public ResponseEntity<Event> store(@RequestBody Event newevent, @RequestParam("file") MultipartFile file) throws Exception {
         eventService.saveEvent(newevent);
         Event event = new Event();
         return ResponseEntity.status(HttpStatus.CREATED).body(event);
     }
+ */
+
+
+/* ***** ÚLTIMA PRUEBA: AÑADIDO ESTE @PostMapping Y COMENTADO EL SIGUIENTE ****** */
+    @PostMapping(path = "")
+    public ResponseEntity<Event> store(@RequestBody Event newevent, @RequestParam("file") MultipartFile file) throws Exception {
+        // Guardar la imagen y obtener el nombre del archivo
+        String imageName = fileStorageService.storeFile(file);
+        // Actualizar el evento con el nombre de la imagen
+        newevent.setImage("/images/" + imageName);
+        // Guardar el evento en la base de datos
+        eventService.saveEvent(newevent);
+        // Devolver el evento creado
+        return ResponseEntity.status(HttpStatus.CREATED).body(newevent);
+}
+    
+/* ***** ÚLTIMA PRUEBA: AÑADIDO EL ANTERIOR @PostMapping Y COMENTADO ESTE ****** */
     
 /*     @PostMapping(path = "")
     public ResponseEntity<Event> store (@RequestBody Event event) throws Exception {
@@ -53,17 +73,6 @@ public class EventController {
         return ResponseEntity.status(201).body(event);
     } */
 
-    
-/*     @GetMapping("/{id}")
-    public Event getEventbyId(@PathVariable Long id) {
-        return eventService.getEventbyId(id);
-    } */
-
-
-/*     @PostMapping 
-    public void AdEvent(@RequestBody Event event)  {
-        eventService.saveEvent(event);
-    } */
 
 /* 
     @DeleteMapping("/{id}")
