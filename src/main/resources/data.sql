@@ -19,6 +19,6 @@ INSERT INTO users (id_user, password, username) VALUES (default, "$2a$12$Hb02zay
 INSERT INTO users (id_user, password, username) VALUES (default, "$2a$12$Hb02zayAURjDGYhnQGf94.etYJu1QjDB2qNPxmhVjf1m4hhZOqJHy", "pepe");
 INSERT INTO roles (id_role, name) VALUES (default, "ROLE_ADMIN");
 INSERT INTO roles (id_role, name) VALUES (default, "ROLE_USER");
--- INSERT INTO roles_users (role_id, user_id) VALUES (1,1);
--- INSERT INTO roles_users (role_id, user_id) VALUES (2,2);
+INSERT INTO roles_users (role_id, user_id) VALUES (1,1);
+INSERT INTO roles_users (role_id, user_id) VALUES (2,2);
 
