@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,32 +28,23 @@ public class EventController {
 
     @Autowired
     private EventService eventService;   
-
+  
     @Autowired
     private FileStorageService fileStorageService;
     
     @GetMapping(path = "")
     public List<Event> getAllEvents() {
-        //return eventService.getAllEvents();
-        return null;
+        return eventService.getAllEvents();
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Event> show(@NonNull @PathVariable("id") Long id) throws Exception {
         Event event = eventService.getEventbyId(id);
-        return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(event);
+        return ResponseEntity.status(HttpStatus.OK).body(event);
     }
 
-    
-    /*     @PostMapping(path = "")
-        public ResponseEntity<Event> store(@RequestBody Event newevent, @RequestParam("file") MultipartFile file) throws Exception {
-            eventService.saveEvent(newevent);
-            Event event = new Event();
-            return ResponseEntity.status(HttpStatus.CREATED).body(event);
-        }
-     */
-
-    @PostMapping(path = "")
+  
+/*     @PostMapping(path = "")
     public ResponseEntity<Event> store(@RequestBody Event newevent, @RequestParam("file") MultipartFile file) throws Exception {
         // Verifica si se ha subido un archivo
         if (!file.isEmpty()) {
@@ -70,7 +60,23 @@ public class EventController {
     
     return ResponseEntity.status(HttpStatus.CREATED).body(savedEvent);
     }
+ */
 
+
+/* ***** ÚLTIMA PRUEBA: AÑADIDO ESTE @PostMapping Y COMENTADO EL SIGUIENTE ****** */
+    @PostMapping(path = "")
+    public ResponseEntity<Event> store(@RequestBody Event newevent, @RequestParam("file") MultipartFile file) throws Exception {
+        // Guardar la imagen y obtener el nombre del archivo
+        String imageName = fileStorageService.storeFile(file);
+        // Actualizar el evento con el nombre de la imagen
+        newevent.setImage("/images/" + imageName);
+        // Guardar el evento en la base de datos
+        eventService.saveEvent(newevent);
+        // Devolver el evento creado
+        return ResponseEntity.status(HttpStatus.CREATED).body(newevent);
+}
+    
+/* ***** ÚLTIMA PRUEBA: AÑADIDO EL ANTERIOR @PostMapping Y COMENTADO ESTE ****** */
     
 /*     @PostMapping(path = "")
     public ResponseEntity<Event> store (@RequestBody Event event) throws Exception {
@@ -78,17 +84,6 @@ public class EventController {
         return ResponseEntity.status(201).body(event);
     } */
 
-    
-/*     @GetMapping("/{id}")
-    public Event getEventbyId(@PathVariable Long id) {
-        return eventService.getEventbyId(id);
-    } */
-
-
-/*     @PostMapping 
-    public void AdEvent(@RequestBody Event event)  {
-        eventService.saveEvent(event);
-    } */
 
 /* 
     @DeleteMapping("/{id}")

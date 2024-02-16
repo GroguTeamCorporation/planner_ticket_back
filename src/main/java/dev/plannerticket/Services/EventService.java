@@ -23,13 +23,9 @@ public class EventService {
         return eventRepository.findById(id).orElse(null);
     }
 
-/*     public void saveEvent(Event event)  {
-        eventRepository.save(event);
-    }   */
-
     public Event saveEvent(Event event)  {
         return eventRepository.save(event);
-    } 
+    }  
 
     public void deleteEvent(Long id) {
         eventRepository.deleteById(id);
