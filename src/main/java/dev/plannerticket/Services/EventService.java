@@ -25,7 +25,6 @@ public class EventService {
 
     public void saveEvent(Event event)  {
         eventRepository.save(event);
-
     }  
 
     public void deleteEvent(Long id) {

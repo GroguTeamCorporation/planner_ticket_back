@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,13 +33,12 @@ public class EventController {
     @GetMapping(path = "")
     public List<Event> getAllEvents() {
         return eventService.getAllEvents();
-        //return null;
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Event> show(@NonNull @PathVariable("id") Long id) throws Exception {
         Event event = eventService.getEventbyId(id);
-        return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(event);
+        return ResponseEntity.status(HttpStatus.OK).body(event);
     }
 
 /*     @PostMapping(path = "")

@@ -31,20 +31,14 @@ import dev.plannerticket.Services.FileStorageService;
 } */
 
 public class ImageController {
-    // ***** añadido ***** :
         @Autowired
         private FileStorageService fileStorageService;
-    
-/*     @PostMapping(path = "/images")
-    ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
-        return ResponseEntity.status(201).body("imagen agregada con éxito");
-    }    
- */
+
     @PostMapping(path = "/images")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
         // Utiliza FileStorageService para guardar la imagen
         String fileName = fileStorageService.storeFile(file);
-        // Devuelve una respuesta con el nombre del archivo
+        // Respuesta con el nombre del archivo
         return ResponseEntity.status(HttpStatus.CREATED).body("Archivo subido con éxito: " + fileName);
     }
 }

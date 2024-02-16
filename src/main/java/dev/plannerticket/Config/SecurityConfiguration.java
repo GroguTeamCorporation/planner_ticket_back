@@ -43,11 +43,11 @@ public class SecurityConfiguration {
                         .logoutUrl(endpoint + "/logout")
                         .deleteCookies("JSESSIONID"))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, endpoint + "/login").permitAll() //.hasRole("ADMIN") 
+                        .requestMatchers(HttpMethod.GET, endpoint + "/login").hasAnyRole("ADMIN","USER") 
                         .requestMatchers(HttpMethod.GET, endpoint + "/events").permitAll()
                         .requestMatchers(HttpMethod.GET, endpoint + "/images").permitAll()
-                        .requestMatchers(HttpMethod.POST, endpoint + "/images").permitAll()
                         .requestMatchers(HttpMethod.POST, endpoint + "/events").permitAll()
+                        .requestMatchers(HttpMethod.POST, endpoint + "/images").permitAll()
                         .anyRequest().authenticated())
                 .userDetailsService(jpaUserDetailsService)
                 .httpBasic(Customizer.withDefaults())
@@ -63,7 +63,9 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:8080"));
+
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
