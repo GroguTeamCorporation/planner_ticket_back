@@ -1,9 +1,7 @@
 package dev.plannerticket.Services;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import dev.plannerticket.Models.User;
 import dev.plannerticket.Repositories.UserRepository;
 import io.micrometer.common.lang.NonNull;

@@ -22,4 +22,4 @@ INSERT INTO roles (id_role, name) VALUES (default, "ROLE_USER");
 INSERT INTO roles_users (role_id, user_id) VALUES (1,1);
 INSERT INTO roles_users (role_id, user_id) VALUES (2,2);
 
-INSERT INTO list (user_id, event_id) VALUES (2 , 3);
+-- INSERT INTO list (user_id, event_id) VALUES (2 , 3);
