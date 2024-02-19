@@ -26,8 +26,9 @@ public class ListUs {
 
     // Assuming that 'listUs' is a reference to another entity with a one-to-many relationship
     @ManyToOne
-    @JoinColumn(name = "user_id") // This should be the name of the foreign key column in the 'list_us' table
-    private User user; // This should be the type of the related entity
+    @JoinColumn(name = "user_id")
+    // This should be the name of the foreign key column in the 'list_us' table
+    private User user;
 
     public ListUs() {
     }

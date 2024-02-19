@@ -14,7 +14,7 @@ import io.micrometer.common.lang.NonNull;
  
 
 @RestController
-@RequestMapping(path = "${api-endpoint}/list_users")
+@RequestMapping(path = "${api-endpoint}/list_us")
 public class ListUsController {
  
 
