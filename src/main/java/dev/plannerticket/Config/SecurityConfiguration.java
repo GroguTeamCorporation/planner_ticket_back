@@ -46,8 +46,11 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.GET, endpoint + "/login").hasAnyRole("ADMIN","USER")
                 .requestMatchers(HttpMethod.GET, endpoint + "/list_us").hasAnyRole("USER")
                 .requestMatchers(HttpMethod.POST, endpoint + "/list_us").hasAnyRole("USER")
-                .requestMatchers(endpoint + "/events/**").permitAll()
-                        .anyRequest().authenticated())
+                .requestMatchers(HttpMethod.GET, endpoint + "/events").permitAll()                        
+                .requestMatchers(HttpMethod.GET, endpoint + "/images").permitAll()
+                .requestMatchers(HttpMethod.POST, endpoint + "/images").permitAll()
+                .requestMatchers(HttpMethod.POST, endpoint + "/events").permitAll()
+                .anyRequest().authenticated())
                 .userDetailsService(jpaUserDetailsService)
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session
@@ -65,7 +68,6 @@ public class SecurityConfiguration {
 
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:8080"));
    
-
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
