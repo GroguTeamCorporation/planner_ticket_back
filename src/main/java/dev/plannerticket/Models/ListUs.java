@@ -21,10 +21,13 @@ public class ListUs {
     @Column(name = "list_us")
     private Long id;
     private String title;
+    private String description;
+    private String location;
+    private int capacity;
     private Date date;
+    private String time;
     private String image;
 
-    // Assuming that 'listUs' is a reference to another entity with a one-to-many relationship
     @ManyToOne
     @JoinColumn(name = "user_id")
     // This should be the name of the foreign key column in the 'list_us' table
@@ -33,16 +36,19 @@ public class ListUs {
     public ListUs() {
     }
 
-    public ListUs(Long id, String title, Date date, String image) {
+    public ListUs(Long id, String title, String description, String location, int capacity, Date date, String time,
+            String image, User user) {
         this.id = id;
         this.title = title;
+        this.description = description;
+        this.location = location;
+        this.capacity = capacity;
         this.date = date;
+        this.time = time;
         this.image = image;
+        this.user = user;
     }
 
-    
-   
-      
     public Long getId() {
         return id;
     }
@@ -59,12 +65,44 @@ public class ListUs {
         this.title = title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
     public Date getDate() {
         return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getImage() {
@@ -74,6 +112,16 @@ public class ListUs {
     public void setImage(String image) {
         this.image = image;
     }
-  
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
     
+   
 }
