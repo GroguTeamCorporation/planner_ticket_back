@@ -22,3 +22,4 @@ INSERT INTO roles (id_role, name) VALUES (default, "ROLE_USER");
 INSERT INTO roles_users (role_id, user_id) VALUES (1,1);
 INSERT INTO roles_users (role_id, user_id) VALUES (2,2);
 
+INSERT INTO list_us ( list_us, user_id, title, date, time, capacity, description, location, image) VALUES (default, default, 'Joaquin Savina', '2024-05-30', '20:00:00', 2000, 'Concierto', 'Oviedo', '/images/concert6.jpg');
