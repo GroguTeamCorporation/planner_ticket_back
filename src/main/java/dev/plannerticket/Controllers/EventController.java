@@ -64,17 +64,17 @@ public class EventController {
 
 
 /* ***** ÚLTIMA PRUEBA: AÑADIDO ESTE @PostMapping Y COMENTADO EL SIGUIENTE ****** */
-    @PostMapping(path = "")
-    public ResponseEntity<Event> store(@RequestBody Event newevent, @RequestParam("file") MultipartFile file) throws Exception {
-        // Guardar la imagen y obtener el nombre del archivo
-        String imageName = fileStorageService.storeFile(file);
-        // Actualizar el evento con el nombre de la imagen
-        newevent.setImage("/images/" + imageName);
-        // Guardar el evento en la base de datos
-        eventService.saveEvent(newevent);
-        // Devolver el evento creado
-        return ResponseEntity.status(HttpStatus.CREATED).body(newevent);
-}
+//     @PostMapping(path = "")
+//     public ResponseEntity<Event> store(@RequestBody Event newevent, @RequestParam("file") MultipartFile file) throws Exception {
+//         // Guardar la imagen y obtener el nombre del archivo
+//         String imageName = fileStorageService.storeFile(file);
+//         // Actualizar el evento con el nombre de la imagen
+//         newevent.setImage("/images/" + imageName);
+//         // Guardar el evento en la base de datos
+//         eventService.saveEvent(newevent);
+//         // Devolver el evento creado
+//         return ResponseEntity.status(HttpStatus.CREATED).body(newevent);
+// }
     
 /* ***** ÚLTIMA PRUEBA: AÑADIDO EL ANTERIOR @PostMapping Y COMENTADO ESTE ****** */
     
@@ -91,5 +91,16 @@ public class EventController {
         eventService.deleteEvent(id);
     }
  */
+
+ // PRUEBA
+
+ @PostMapping(path = "")
+    public ResponseEntity<Event> store(@RequestBody Event newevent) throws Exception {
+        // El objeto Event tiene que incluir el nombre de la imagen
+        // Guardar el evento en la base de datos        
+        eventService.saveEvent(newevent);
+        // Devolver el evento creado
+        return ResponseEntity.status(HttpStatus.CREATED).body(newevent);
+    }
 }
 
