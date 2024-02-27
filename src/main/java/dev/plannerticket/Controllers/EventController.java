@@ -11,13 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-
 import dev.plannerticket.Models.Event;
 import dev.plannerticket.Services.EventService;
-import dev.plannerticket.Services.FileStorageService;
 import io.micrometer.common.lang.NonNull;
 
 
@@ -29,9 +25,6 @@ public class EventController {
     @Autowired
     private EventService eventService;   
   
-    @Autowired
-    private FileStorageService fileStorageService;
-    
     @GetMapping(path = "")
     public List<Event> getAllEvents() {
         return eventService.getAllEvents();
@@ -94,7 +87,7 @@ public class EventController {
 
  // PRUEBA
 
- @PostMapping(path = "")
+ @PostMapping(path = "/")
     public ResponseEntity<Event> store(@RequestBody Event newevent) throws Exception {
         // El objeto Event tiene que incluir el nombre de la imagen
         // Guardar el evento en la base de datos        
