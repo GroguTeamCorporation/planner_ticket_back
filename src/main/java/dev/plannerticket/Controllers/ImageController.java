@@ -42,4 +42,5 @@ public class ImageController {
         // Respuesta con el nombre del archivo
         return ResponseEntity.status(HttpStatus.CREATED).body("Archivo subido con éxito: " + fileName);
     }
+
 }

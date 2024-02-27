@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+
+
 @Service
 public class FileStorageService {
     private final String uploadDir = "src/main/resources/static/images/";
@@ -29,5 +31,7 @@ public class FileStorageService {
             throw new RuntimeException("No se ha podido almacenar el archivo" + fileName + ". Intentarlo de nuevo.");
         }
         return fileName;
-    }    
+    }
+
+    
 }
