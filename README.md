@@ -36,7 +36,7 @@ mvn spring-boot:run
 
 ## Uso en Postman
 
-### endpoints Imagen
+# Imagen
 
 ### POST Añadir Imagen 
 
