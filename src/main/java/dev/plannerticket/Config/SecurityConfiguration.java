@@ -131,8 +131,11 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.POST, endpoint + "/list_us").hasAnyRole("ADMIN","USER")
                 .requestMatchers(HttpMethod.GET, endpoint + "/events").permitAll()                        
                 .requestMatchers(HttpMethod.GET, endpoint + "/images/**").permitAll() // Permitir acceso a /images sin autenticación
-                .requestMatchers(HttpMethod.POST, endpoint + "/images/**").permitAll() 
-                .requestMatchers(HttpMethod.POST, endpoint + "/events").permitAll()
+                .requestMatchers(HttpMethod.POST, endpoint + "/events").hasRole("ADMIN")                
+                .requestMatchers(HttpMethod.POST, endpoint + "/images").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, endpoint + "/logout/").permitAll()
+                .requestMatchers(HttpMethod.POST, endpoint + "/users/").permitAll()
+
                 .anyRequest().authenticated())
                 .userDetailsService(jpaUserDetailsService)
                 .httpBasic(Customizer.withDefaults())

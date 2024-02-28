@@ -21,9 +21,7 @@ public class ImageController {
 
     @PostMapping(path = "/images")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
-        // Utiliza FileStorageService para guardar la imagen
         String fileName = fileStorageService.storeFile(file);
-        // Respuesta con el nombre del archivo
         return ResponseEntity.status(HttpStatus.CREATED).body("Archivo subido con éxito: " + fileName);
     }
 

@@ -12,19 +12,15 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 
-
 @Service
 public class FileStorageService {
     private final String uploadDir = "src/main/resources/static/images/";
-    //private final String uploadDir = "resources/static/images/";
-
-    public String storeFile(MultipartFile file) {
-        // Genera un nombre de archivo único para evitar conflictos
-        @SuppressWarnings("null")
+    
+    public String storeFile(MultipartFile file) {        
+        
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         Path path = Paths.get(uploadDir, fileName);
 
-        // Copia el archivo al directorio de destino
         try (InputStream inputStream = file.getInputStream()) {
             Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
