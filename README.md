@@ -109,6 +109,10 @@ localhost:8080/api/v1/login
 ```
 
 
-## Modelo base de datos
+## COLABORADORES/AS  :family:
 
-![img.png](./frontend/src/assets/img/readme/DATA%20BASE%20MODEL.svg)
+- [Borja Fernández](https://github.com/BarmanDev)
+- [Eva López](https://github.com/EvaMLopez)
+- [Katherine Gómez](https://github.com/kaligocas)
+- [Natalia García](https://github.com/natt83)
+- [Stella Maris](https://github.com/Stegonyrob)
