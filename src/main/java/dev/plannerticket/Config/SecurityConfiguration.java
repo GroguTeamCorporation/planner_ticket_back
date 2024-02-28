@@ -1,7 +1,6 @@
 package dev.plannerticket.Config;
 
 import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,9 +43,14 @@ public class SecurityConfiguration {
                         .logoutUrl(endpoint + "/logout")
                         .deleteCookies("JSESSIONID"))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, endpoint + "/login").hasRole("ADMIN")
-                        .requestMatchers(endpoint + "/events/**").permitAll()
-                        .anyRequest().authenticated())
+                .requestMatchers(HttpMethod.GET, endpoint + "/login").hasAnyRole("ADMIN","USER")
+                .requestMatchers(HttpMethod.GET, endpoint + "/list_us").hasAnyRole("ADMIN ", "USER")
+                .requestMatchers(HttpMethod.POST, endpoint + "/list_us").hasAnyRole("ADMIN","USER")
+                .requestMatchers(HttpMethod.POST, endpoint + "/events").hasRole("ADMIN")                
+                .requestMatchers(HttpMethod.POST, endpoint + "/images").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, endpoint + "/events").permitAll()                        
+                .requestMatchers(HttpMethod.GET, endpoint + "/images").permitAll()
+                .anyRequest().authenticated())
                 .userDetailsService(jpaUserDetailsService)
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session
@@ -55,13 +59,15 @@ public class SecurityConfiguration {
         http.headers(header -> header.frameOptions(frame -> frame.sameOrigin()));
 
         return http.build();
-    }
+    } 
 
     @Bean
-    CorsConfigurationSource CorsConfigurationSource() {
+    CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(Arrays.asList("http:localhost:5173"));
+
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173","http://localhost:5174", "http://localhost:8080"));
+   
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -73,4 +79,5 @@ public class SecurityConfiguration {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
